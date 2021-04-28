@@ -10,9 +10,9 @@ def kimetsu_search(word,csv_name):
     # 検索
     if word in source:
         print("『{}』はいます".format(word))
-        eel.view_log.js("『{}』はいます".format(word))
+        eel.view_log_js("『{}』はいます".format(word))
     else:
-        print("『{}』はいません".format(word))
+        print("『{}』はありません".format(word))
         eel.view_log_js("『{}』はいません".format(word))
         eel.view_log_js("『{}』を追加します".format(word))
         # 追加
@@ -24,3 +24,4 @@ def kimetsu_search(word,csv_name):
     df=pd.DataFrame(source,columns=["name"])
     df.to_csv("./{}".format(csv_name),encoding="utf_8-sig")
     print(source)
+    
