@@ -1,29 +1,42 @@
 <html>
     <head>
-        <title>eel-test</title>
+        <title>eelテスト</title>
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
-        <h2>検索くん</h2>
+        <h2>eelテスト</h2>
         <div class="">
-            CSVファイル名<input id="csv_name" type="text"></input><br/>
-            検索ワード<input id="search_word" type="text"></input>
+            CSVファイル名：<input type="text" id="csv_name"></input><br>
+            検索ワード：<input type="text" id="search_keyword"></input>
             <button id="search">検索</button><br/>
-            
         </div>
         <div>
             <textarea id="result" class="log-view-area"></textarea>
         </div>
+
         <script type="text/javascript" src="./eel.js"></script>
         <script>
             search.addEventListener('click', () => {
-            //alert(serch_word.value)
-            eel.kimetsu_search(search_word.value,csv_name.value)
+                // 空欄の時はアラート
+                if (csv_name.value == ""){
+                    alert("CSVファイル名が入力されていません");
+                    return false;
+                }else if (search_keyword.value == ""){
+                    alert("検索ワードが入力されていません");
+                    return false;
+                } else {
+                    // Pythonの関数を呼び出し
+                    eel.s03_search(search_keyword.value, csv_name.value)
+                    return true;
+                }
             })
+
+            // Pythonへ関数登録
             eel.expose(view_log_js)
-            function view_log_js(text){
-                result.value += text + "\n"
+            function view_log_js(txt){
+                result.value += txt + "\n"
             }
         </script>
+
     </body>
 </html>
